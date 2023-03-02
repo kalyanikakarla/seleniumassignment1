@@ -1,5 +1,6 @@
 package com.Grid;
 
+import PageClasses.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,14 +12,23 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Lamdatest {
     public WebDriver driver;
+    public LoginPage loginPage;
+    public GearAndBagsPage gearAndBagsPage;
+    public HighestPrice highestPrice;
+    public WishListPage wishListPage;
+    public ShippingAdressPage shippingAdressPage;
+    public PayMentPage payMentPage;
+    public ThankYoupage thankYoupage;
     public DesiredCapabilities desiredCapabilities;
 
     @Parameters({"browser"})
@@ -58,5 +68,22 @@ public class Lamdatest {
 
 
         }
+    }
+    @BeforeClass
+    public void driverinitialize()
+    {
+        loginPage=new LoginPage(driver);
+        gearAndBagsPage=new GearAndBagsPage(driver);
+        highestPrice=new HighestPrice(driver);
+        wishListPage=new WishListPage(driver);
+        shippingAdressPage=new ShippingAdressPage(driver);
+        payMentPage=new PayMentPage(driver);
+        thankYoupage=new ThankYoupage(driver);
+    }
+    @Test
+    public void login()
+    {
+        loginPage.login("kakarlakalyani123@gmail.com","Kalyani@123");
+
     }
 }
